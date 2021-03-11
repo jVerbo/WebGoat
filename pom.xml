@@ -31,6 +31,8 @@
         </license>
     </licenses>
 
+    <!-- Cambio de prueba -->
+
     <developers>
         <developer>
             <id>mayhew64</id>
@@ -254,7 +256,8 @@
       					<failurePriority>1</failurePriority><!-- 5 means fail even on the lowest
       						priority, 0 means never fail -->
       					<rulesets>
-      						<ruleset>${maven.multiModuleProjectDirectory}/pmd-ruleset.xml</ruleset>
+      						<!--suppress UnresolvedMavenProperty -->
+                            <ruleset>${maven.multiModuleProjectDirectory}/pmd-ruleset.xml</ruleset>
       					</rulesets>
       					<failOnViolation>true</failOnViolation>
       					<printFailingErrors>true</printFailingErrors>
