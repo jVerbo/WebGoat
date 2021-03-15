@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.thymeleaf.model.IStandaloneElementTag;
 
 import javax.sql.DataSource;
 import java.sql.PreparedStatement;
@@ -58,8 +59,7 @@ public class Assignment5 extends AssignmentEndpoint {
 
         String sql = "select "+"password from challenge_users"+" where userid = ? and password = ?";
         try (var connection = dataSource.getConnection()) {
-            PreparedStatement statement = connection.prepareStatement(sql);
-            try{
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setString(1, username_login);
                 statement.setString(2, password_login);
                 ResultSet resultSet = statement.executeQuery();
@@ -69,8 +69,6 @@ public class Assignment5 extends AssignmentEndpoint {
                 } else {
                     return failed(this).feedback("challenge.close").build();
                 }
-            }finally {
-                statement.close();
             }
         }
     }
